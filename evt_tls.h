@@ -21,7 +21,6 @@ extern "C" {
 #include <openssl/engine.h>
 #include "queue.h"
 
-
 typedef struct evt_tls_s evt_tls_t;
 
 //callback used for handshake completion notificat6ion

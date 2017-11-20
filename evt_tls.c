@@ -7,9 +7,9 @@
 //////////////////////////////////////////////////////////////////////////
 //
 //%///////////////////////////////////////////////////////////////////////////
-
+#include "uv_tls.h"
 #include <assert.h>
-#include "evt_tls.h"
+
 
 evt_endpt_t evt_tls_get_role(const evt_tls_t *t)
 {
@@ -54,7 +54,7 @@ static void tls_begin(void)
 evt_tls_t *evt_ctx_get_tls(evt_ctx_t *d_eng)
 {
     int r = 0;
-    evt_tls_t *con = malloc(sizeof(evt_tls_t));
+    evt_tls_t *con = (evt_tls_t*)malloc(sizeof(evt_tls_t));
     if ( !con ) {
         return NULL;
     }
@@ -166,9 +166,9 @@ int evt_ctx_init(evt_ctx_t *tls)
     SSL_CTX_set_mode(tls->ctx, SSL_MODE_AUTO_RETRY
         | SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER
         | SSL_MODE_ENABLE_PARTIAL_WRITE
-#if defined(SSL_MODE_RELEASE_BUFFERS)
+//#ifdef SSL_MODE_RELEASE_BUFFERS
         | SSL_MODE_RELEASE_BUFFERS
-#endif
+//#endif
     );
 
     tls->cert_set = 0;
